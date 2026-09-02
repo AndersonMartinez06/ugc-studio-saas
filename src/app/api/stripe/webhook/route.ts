@@ -6,7 +6,9 @@ import { createServiceClient } from "@/lib/supabase/server";
 export const runtime = "nodejs"; // necesitamos el raw body
 export const dynamic = "force-dynamic";
 
-const supabase = createServiceClient();
+// Se crea por request (no en el scope del módulo) para no romper el build.
+type DB = ReturnType<typeof createServiceClient>;
+let supabase: DB;
 
 function mapPlan(sub: Stripe.Subscription) {
   const priceId = sub.items.data[0]?.price.id ?? "";
@@ -63,8 +65,14 @@ async function upsertSubscription(sub: Stripe.Subscription) {
 }
 
 export async function POST(req: NextRequest) {
+  supabase = createServiceClient();
+
   const body = await req.text();
   const sig = req.headers.get("stripe-signature");
+
+  if (!process.env.STRIPE_WEBHOOK_SECRET) {
+    return new NextResponse("Webhook no configurado", { status: 500 });
+  }
 
   let event: Stripe.Event;
   try {
