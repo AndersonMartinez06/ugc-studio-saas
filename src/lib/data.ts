@@ -3,6 +3,9 @@ export type Slide = {
   niche: "Moda" | "Tech" | "Fitness" | "Ecommerce";
   creator: string;
   verified: boolean;
+  /** MP4 en bucle. Assets de ejemplo de libre uso (Cloudinary demo, test-videos.co.uk, MDN CC0). */
+  src: string;
+  poster?: string;
   metrics: [string, string][];
 };
 
@@ -11,13 +14,42 @@ export type Niche = (typeof NICHES)[number];
 
 export const PLANS: Record<number, number> = { 4: 299, 8: 499, 16: 849 };
 
+const CLD = "https://res.cloudinary.com/demo/video/upload";
+const TV = "https://test-videos.co.uk/vids";
+
 export const SLIDES: Slide[] = [
-  { id: "1", niche: "Tech", creator: "@lauravisuals", verified: true, metrics: [["CTR", "4.8%"], ["ROAS", "3.9x"], ["Views", "1.2M"]] },
-  { id: "2", niche: "Fitness", creator: "@marco.fit", verified: true, metrics: [["CTR", "6.1%"], ["ROAS", "5.2x"], ["Views", "840K"]] },
-  { id: "3", niche: "Moda", creator: "@sofiawears", verified: false, metrics: [["CTR", "3.4%"], ["Hook", "41%"], ["Views", "560K"]] },
-  { id: "4", niche: "Ecommerce", creator: "@thedailycart", verified: true, metrics: [["CTR", "5.5%"], ["ROAS", "4.4x"], ["Views", "2.0M"]] },
-  { id: "5", niche: "Tech", creator: "@buildwithkev", verified: true, metrics: [["CTR", "4.0%"], ["ROAS", "3.1x"], ["Views", "430K"]] },
-  { id: "6", niche: "Fitness", creator: "@nadia.moves", verified: true, metrics: [["CTR", "5.7%"], ["ROAS", "4.8x"], ["Views", "910K"]] },
+  {
+    id: "1", niche: "Tech", creator: "@lauravisuals", verified: true,
+    src: `${CLD}/q_auto/dog.mp4`,
+    poster: `${CLD}/so_1,w_640,h_1136,c_fill/dog.jpg`,
+    metrics: [["CTR", "4.8%"], ["ROAS", "3.9x"], ["Views", "1.2M"]],
+  },
+  {
+    id: "2", niche: "Fitness", creator: "@marco.fit", verified: true,
+    src: `${CLD}/q_auto/elephants.mp4`,
+    poster: `${CLD}/so_2,w_640,h_1136,c_fill/elephants.jpg`,
+    metrics: [["CTR", "6.1%"], ["ROAS", "5.2x"], ["Views", "840K"]],
+  },
+  {
+    id: "3", niche: "Moda", creator: "@sofiawears", verified: false,
+    src: `${TV}/sintel/mp4/h264/720/Sintel_720_10s_1MB.mp4`,
+    metrics: [["CTR", "3.4%"], ["Hook", "41%"], ["Views", "560K"]],
+  },
+  {
+    id: "4", niche: "Ecommerce", creator: "@thedailycart", verified: true,
+    src: `${TV}/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_2MB.mp4`,
+    metrics: [["CTR", "5.5%"], ["ROAS", "4.4x"], ["Views", "2.0M"]],
+  },
+  {
+    id: "5", niche: "Tech", creator: "@buildwithkev", verified: true,
+    src: "https://mdn.github.io/shared-assets/videos/flower.mp4",
+    metrics: [["CTR", "4.0%"], ["ROAS", "3.1x"], ["Views", "430K"]],
+  },
+  {
+    id: "6", niche: "Fitness", creator: "@nadia.moves", verified: true,
+    src: `${TV}/jellyfish/mp4/h264/720/Jellyfish_720_10s_1MB.mp4`,
+    metrics: [["CTR", "5.7%"], ["ROAS", "4.8x"], ["Views", "910K"]],
+  },
 ];
 
 export const NICHE_GRADIENT: Record<Slide["niche"], string> = {
