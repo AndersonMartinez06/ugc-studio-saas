@@ -9,7 +9,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function Pricing() {
   return (
     <section id="planes" className="px-6 py-[clamp(72px,11vw,128px)]">
-      <div className="mx-auto max-w-[1120px]">
+      <div className="mx-auto max-w-[1120px] min-[1920px]:max-w-[1440px] min-[2560px]:max-w-[1680px]">
         <SectionHead
           title={
             <>
@@ -19,7 +19,7 @@ export default function Pricing() {
           subtitle="Sin contrato. Pausa, sube o baja de plan cuando quieras. Créditos acumulables 60 días."
         />
 
-        <div className="grid grid-cols-1 gap-[18px] md:grid-cols-3">
+        <div className="mx-auto grid max-w-[480px] grid-cols-1 gap-[18px] lg:max-w-none lg:grid-cols-3">
           {PRICING.map((p, i) => (
             <motion.div
               key={p.tag}

@@ -9,7 +9,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function Testimonials() {
   return (
     <section id="clientes" className="px-6 py-[clamp(72px,11vw,128px)]">
-      <div className="mx-auto max-w-[1120px]">
+      <div className="mx-auto max-w-[1120px] min-[1920px]:max-w-[1440px] min-[2560px]:max-w-[1680px]">
         <SectionHead
           title={
             <>

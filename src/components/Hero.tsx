@@ -22,7 +22,7 @@ export default function Hero() {
     <header className="relative overflow-hidden pt-[clamp(90px,13vw,150px)] text-center">
       <div className="pointer-events-none absolute inset-0 -z-10 [background:radial-gradient(ellipse_at_top,rgba(45,212,232,.14),transparent_55%)]" />
 
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-4xl px-6 min-[1920px]:max-w-5xl">
         <FadeIn>
           <span className="inline-flex items-center gap-2 rounded-pill border border-glass-stroke bg-white/[0.045] px-3 py-1.5 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-text-mid">
             <span className="h-1.5 w-1.5 animate-pulse2 rounded-full bg-lime shadow-[0_0_10px_var(--lime)]" />
@@ -31,14 +31,14 @@ export default function Hero() {
         </FadeIn>
 
         <FadeIn delay={0.05}>
-          <h1 className="mt-6 text-[clamp(2.4rem,6.2vw,4.3rem)] font-bold">
+          <h1 className="mt-6 text-[clamp(2.4rem,6.2vw,4.3rem)] font-bold min-[1920px]:text-[5.4rem]">
             Anuncios que la gente detiene el scroll para ver.{" "}
             <span className="grad-text">En automático, cada mes.</span>
           </h1>
         </FadeIn>
 
         <FadeIn delay={0.12}>
-          <p className="mx-auto mt-5 max-w-[620px] text-[1.1rem] text-text-mid">
+          <p className="mx-auto mt-5 max-w-[620px] text-[1.1rem] text-text-mid min-[1920px]:max-w-[760px] min-[1920px]:text-[1.35rem]">
             Deja de pagar $300 por un video que caduca en 5 días. Recibe un flujo constante de
             creativos UGC listos para escalar — grabados por creadores verificados y medidos por
             rendimiento real.
@@ -69,7 +69,7 @@ export default function Hero() {
         </FadeIn>
       </div>
 
-      <div id="showcase" className="mx-auto max-w-[1120px] px-6">
+      <div id="showcase" className="shell">
         <UgcCarousel />
       </div>
     </header>

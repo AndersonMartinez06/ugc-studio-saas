@@ -6,7 +6,7 @@ import { SectionHead } from "./Section";
 export default function Faq() {
   return (
     <section id="faq" className="px-6 py-[clamp(72px,11vw,128px)]">
-      <div className="mx-auto max-w-[1120px]">
+      <div className="mx-auto max-w-[1120px] min-[1920px]:max-w-[1440px] min-[2560px]:max-w-[1680px]">
         <SectionHead title="Antes de suscribirte" subtitle="Entregas, derechos de uso y créditos — sin letra pequeña." />
 
         <div className="mx-auto flex max-w-[760px] flex-col gap-3">
