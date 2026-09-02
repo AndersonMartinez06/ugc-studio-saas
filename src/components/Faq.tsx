@@ -7,16 +7,20 @@ export default function Faq() {
   return (
     <section id="faq" className="px-6 py-[clamp(72px,11vw,128px)]">
       <div className="mx-auto max-w-[1120px] min-[1920px]:max-w-[1440px] min-[2560px]:max-w-[1680px]">
-        <SectionHead title="Antes de suscribirte" subtitle="Entregas, derechos de uso y créditos — sin letra pequeña." />
+        <SectionHead
+          eyebrow="Preguntas frecuentes"
+          title="Todo lo que necesitas saber"
+          subtitle="Entregas, derechos de uso y la diferencia entre paquete y suscripción — sin letra pequeña."
+        />
 
         <div className="mx-auto flex max-w-[760px] flex-col gap-3">
           {FAQS.map(([q, a], i) => (
             <details key={i} className="faq-item glass group px-[22px]" {...(i === 0 ? { open: true } : {})}>
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-display text-[1.02rem] font-semibold marker:content-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-display text-[1.02rem] font-semibold marker:content-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent">
                 {q}
                 <span className="relative h-5 w-5 flex-none transition-transform group-open:rotate-180" aria-hidden>
-                  <span className="absolute left-1/2 top-1/2 h-0.5 w-3 -translate-x-1/2 -translate-y-1/2 bg-cyan" />
-                  <span className="absolute left-1/2 top-1/2 h-3 w-0.5 -translate-x-1/2 -translate-y-1/2 bg-cyan transition-opacity group-open:opacity-0" />
+                  <span className="absolute left-1/2 top-1/2 h-0.5 w-3 -translate-x-1/2 -translate-y-1/2 bg-accent" />
+                  <span className="absolute left-1/2 top-1/2 h-3 w-0.5 -translate-x-1/2 -translate-y-1/2 bg-accent transition-opacity group-open:opacity-0" />
                 </span>
               </summary>
               <div className="max-w-[64ch] pb-[22px] text-[0.96rem] text-text-mid">{a}</div>

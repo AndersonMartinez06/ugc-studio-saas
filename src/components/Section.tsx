@@ -27,16 +27,25 @@ export function Reveal({
 }
 
 export function SectionHead({
+  eyebrow,
   title,
   subtitle,
 }: {
+  eyebrow?: string;
   title: React.ReactNode;
-  subtitle: string;
+  subtitle?: string;
 }) {
   return (
     <Reveal className="mx-auto mb-14 max-w-[640px] text-center min-[1920px]:max-w-[780px]">
-      <h2 className="text-[clamp(1.9rem,4.2vw,2.9rem)] font-semibold min-[1920px]:text-[3.6rem]">{title}</h2>
-      <p className="mt-3.5 text-[1.03rem] text-text-mid min-[1920px]:text-[1.25rem]">{subtitle}</p>
+      {eyebrow && (
+        <span className="mb-3 inline-block font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-accent-soft">
+          {eyebrow}
+        </span>
+      )}
+      <h2 className="text-[clamp(1.9rem,4.2vw,2.9rem)] font-extrabold min-[1920px]:text-[3.6rem]">{title}</h2>
+      {subtitle && (
+        <p className="mt-3.5 text-[1.03rem] text-text-mid min-[1920px]:text-[1.25rem]">{subtitle}</p>
+      )}
     </Reveal>
   );
 }

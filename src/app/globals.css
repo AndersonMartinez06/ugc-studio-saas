@@ -10,22 +10,27 @@
 
 :root {
   color-scheme: dark;
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  --void: #06070c;
-  --surface: #0c1018;
-  --cyan: #2dd4e8;
+  /* Creativia × Scrollstop — tinta casi negra con sesgo violeta,
+     acento magenta de imprenta, cian solo para datos positivos. */
+  --void: #08070e;
+  --surface: #14111d;
+  --accent: #e5308f;
+  --accent-soft: #f472b6;
   --violet: #7c5cff;
-  --lime: #b6f03c;
-  --rose: #ff6b8a;
-  --text-hi: #eef1fa;
-  --text-mid: #98a1bc;
-  --text-low: #59627a;
+  --data: #22d3ee;
+  --rose: #fb7185;
+  --wa: #25d366;
+  --text-hi: #f4f2f7;
+  --text-mid: #9a94a8;
+  --text-low: #5b5568;
+  --line: #262231;
   --glass-fill: rgba(255, 255, 255, 0.045);
   --glass-stroke: rgba(255, 255, 255, 0.1);
-  --grad: linear-gradient(115deg, var(--cyan), var(--violet));
+  --grad: linear-gradient(120deg, var(--accent), var(--violet));
 }
 
 * {
@@ -41,23 +46,24 @@ body {
   margin: 0;
   overflow-x: clip;
   background:
-    radial-gradient(60rem 40rem at 12% -8%, rgba(45, 212, 232, 0.14), transparent 60%),
-    radial-gradient(52rem 40rem at 92% 6%, rgba(124, 92, 255, 0.16), transparent 62%),
+    radial-gradient(60rem 40rem at 12% -8%, rgba(229, 48, 143, 0.16), transparent 60%),
+    radial-gradient(52rem 40rem at 92% 4%, rgba(124, 92, 255, 0.16), transparent 62%),
     radial-gradient(60rem 50rem at 50% 120%, rgba(124, 92, 255, 0.1), transparent 60%),
     var(--void);
   color: var(--text-hi);
   font-family: var(--font-body);
   line-height: 1.6;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: var(--font-display);
-  letter-spacing: -0.022em;
-  line-height: 1.06;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
   text-wrap: balance;
   margin: 0;
 }
@@ -112,7 +118,7 @@ h3 {
     background: conic-gradient(
       from var(--angle),
       transparent 0deg,
-      var(--cyan) 90deg,
+      var(--accent) 90deg,
       var(--violet) 180deg,
       transparent 300deg
     );
@@ -123,6 +129,16 @@ h3 {
     mask-composite: exclude;
     animation: spin360 6s linear infinite;
   }
+
+  /* Botón verde WhatsApp — el canal real de contacto de Creativia */
+  .btn-wa {
+    background: var(--wa);
+    color: #04250f;
+    box-shadow: 0 8px 26px -8px rgba(37, 211, 102, 0.55);
+  }
+  .btn-wa:hover {
+    filter: brightness(1.06);
+  }
 }
 
 @keyframes spin360 {
@@ -131,11 +147,95 @@ h3 {
   }
 }
 
+/* Destello que recorre un CTA (de Creativia) */
+@keyframes sheen {
+  0%,
+  60% {
+    left: -45%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -45%;
+  width: 32%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+  transform: skewX(-18deg);
+  animation: sheen 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Marquee del hero */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 26s linear infinite;
+}
+
+/* Toast de "nueva venta" en la tarjeta del hero */
+@keyframes toast-cycle {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  84% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+.animate-toast {
+  animation: toast-cycle 3.4s ease-in-out infinite;
+}
+
+/* Bump del monto en la tarjeta de ventas */
+@keyframes amount-bump {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.1);
+    color: var(--accent-soft);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-bump {
+  animation: amount-bump 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .glow-border::before {
+  .glow-border::before,
+  .btn-sheen::after,
+  .animate-marquee,
+  .animate-bump,
+  .animate-toast {
     animation: none;
   }
 }
@@ -149,7 +249,7 @@ input[type="range"] {
   border-radius: 3px;
   background: linear-gradient(
     90deg,
-    var(--cyan) var(--pct, 50%),
+    var(--accent) var(--pct, 50%),
     rgba(255, 255, 255, 0.12) var(--pct, 50%)
   );
   outline: none;
@@ -161,7 +261,9 @@ input[type="range"]::-webkit-slider-thumb {
   height: 18px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 0 4px rgba(45, 212, 232, 0.25), 0 0 14px var(--cyan);
+  box-shadow:
+    0 0 0 4px rgba(229, 48, 143, 0.25),
+    0 0 14px var(--accent);
 }
 input[type="range"]::-moz-range-thumb {
   width: 18px;
@@ -169,9 +271,11 @@ input[type="range"]::-moz-range-thumb {
   border: 0;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 0 4px rgba(45, 212, 232, 0.25), 0 0 14px var(--cyan);
+  box-shadow:
+    0 0 0 4px rgba(229, 48, 143, 0.25),
+    0 0 14px var(--accent);
 }
 input[type="range"]:focus-visible {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--accent);
   outline-offset: 6px;
 }

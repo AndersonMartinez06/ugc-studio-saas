@@ -8,12 +8,13 @@ export default function CompareTable() {
     <section id="comparar" className="px-6 py-[clamp(72px,11vw,128px)]">
       <div className="mx-auto max-w-[1120px] min-[1920px]:max-w-[1440px] min-[2560px]:max-w-[1680px]">
         <SectionHead
+          eyebrow="La cuenta clara"
           title={
             <>
-              Comprar videos sueltos <span className="text-text-low">vs.</span> suscripción
+              Hacer los videos por tu cuenta <span className="text-text-low">vs.</span> Creativia
             </>
           }
-          subtitle="La compra única resuelve hoy. La suscripción construye una máquina de iteración creativa."
+          subtitle="Contratar freelances sueltos parece más barato hasta que sumas el tiempo, la coordinación y la calidad inconsistente."
         />
 
         <Reveal>
@@ -23,10 +24,10 @@ export default function CompareTable() {
                 <tr>
                   <th className="px-4 py-4 text-left font-display text-[0.82rem] uppercase tracking-[0.06em] text-text-low">&nbsp;</th>
                   <th className="px-4 py-4 text-left font-display text-[0.82rem] uppercase tracking-[0.06em] text-text-low">
-                    Videos sueltos
+                    Por tu cuenta
                   </th>
-                  <th className="rounded-t-xl border-x border-t border-cyan/40 bg-gradient-to-b from-cyan/10 to-transparent px-4 py-4 text-left font-display text-[0.82rem] uppercase tracking-[0.06em] text-cyan">
-                    Suscripción Scrollstop
+                  <th className="rounded-t-xl border-x border-t border-accent/40 bg-gradient-to-b from-accent/10 to-transparent px-4 py-4 text-left font-display text-[0.82rem] uppercase tracking-[0.06em] text-accent">
+                    Con Creativia
                   </th>
                 </tr>
               </thead>
@@ -37,7 +38,7 @@ export default function CompareTable() {
                     <td className={`border-b border-glass-stroke px-4 py-4 text-[0.94rem] ${row[1] === "—" ? "text-text-low" : "text-text-hi"}`}>
                       {row[1]}
                     </td>
-                    <td className="border-x border-b border-cyan/25 bg-gradient-to-b from-cyan/[0.09] to-transparent px-4 py-4 text-[0.94rem] font-semibold text-lime">
+                    <td className="border-x border-b border-accent/25 bg-gradient-to-b from-accent/[0.09] to-transparent px-4 py-4 text-[0.94rem] font-semibold text-text-hi">
                       {row[2]}
                     </td>
                   </tr>

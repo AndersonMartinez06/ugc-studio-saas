@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const display = Space_Grotesk({
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600", "700", "800"],
   variable: "--font-display",
 });
-const body = Inter({ subsets: ["latin"], variable: "--font-body" });
+const body = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-body",
+});
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -15,16 +19,12 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Scrollstop — UGC on demand",
+  title: "Creativia | Videos que venden para tiendas online",
   description:
-    "Plataforma de contenido UGC por suscripción: creativos verificados, entregas cada mes y métricas de rendimiento por video.",
+    "Creativia produce videos VSL, UGC, POV y con IA para tiendas online. Guion, estudio de mercado, producción y edición incluidos. Paquetes desde $99 o suscripción mensual.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
       <body className={`${display.variable} ${body.variable} ${mono.variable} font-body`}>

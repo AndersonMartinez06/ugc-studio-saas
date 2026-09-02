@@ -66,7 +66,7 @@ function CardMedia({
 
       <div className="absolute left-2.5 top-2.5 flex items-center gap-1.5 rounded-pill border border-white/15 bg-void/55 px-2 py-1 text-xs text-white backdrop-blur">
         <span>{slide.creator}</span>
-        {slide.verified && <BadgeCheck className="h-3.5 w-3.5 text-cyan" />}
+        {slide.verified && <BadgeCheck className="h-3.5 w-3.5 text-accent" />}
       </div>
       <div className="absolute right-2.5 top-2.5 rounded-pill bg-violet/70 px-2 py-1 text-[0.7rem] font-semibold text-white backdrop-blur">
         {slide.niche}
@@ -74,7 +74,7 @@ function CardMedia({
 
       <div className="absolute inset-x-3 bottom-3 h-[3px] overflow-hidden rounded-sm bg-white/20">
         <i
-          className={`block h-full bg-cyan shadow-[0_0_10px_var(--cyan)] ${
+          className={`block h-full bg-accent shadow-[0_0_10px_var(--accent)] ${
             playing ? "motion-safe:animate-scrub" : "w-[38%]"
           }`}
         />
@@ -98,7 +98,7 @@ function MetricsBadges({ slide, inside }: { slide: Slide; inside?: boolean }) {
           key={l}
           className="flex items-center gap-1.5 rounded-xl border border-glass-stroke bg-[rgba(12,16,24,.78)] px-2 py-1.5 backdrop-blur-md"
         >
-          <TrendingUp className="h-3 w-3 text-lime" />
+          <TrendingUp className="h-3 w-3 text-data" />
           <span className="font-mono text-[0.55rem] uppercase tracking-[0.08em] text-text-low">{l}</span>
           <span className="font-mono text-xs font-semibold text-white">{v}</span>
         </div>
@@ -135,7 +135,7 @@ function FanCard({
       <div
         className={`overflow-hidden rounded-card border border-glass-stroke bg-surface transition-transform duration-300 ${
           active
-            ? "shadow-[0_0_0_1px_rgba(45,212,232,.5),0_0_34px_-6px_rgba(45,212,232,.5),0_0_70px_-12px_rgba(124,92,255,.45)] hover:scale-[1.02]"
+            ? "shadow-[0_0_0_1px_rgba(229,48,143,.5),0_0_34px_-6px_rgba(229,48,143,.5),0_0_70px_-12px_rgba(124,92,255,.45)] hover:scale-[1.02]"
             : "shadow-[0_40px_90px_-50px_#000]"
         }`}
       >
@@ -281,7 +281,7 @@ export default function UgcCarousel() {
               }}
               className={`rounded-pill border px-4 py-2 text-sm transition ${
                 active
-                  ? "border-transparent bg-cyan font-semibold text-[#04141a] shadow-[0_0_22px_-6px_var(--cyan)]"
+                  ? "border-transparent bg-accent font-semibold text-white shadow-[0_0_22px_-6px_var(--accent)]"
                   : "border-glass-stroke bg-white/[0.045] text-text-mid hover:text-text-hi"
               }`}
             >
@@ -330,7 +330,7 @@ export default function UgcCarousel() {
         <button
           onClick={() => go(-1)}
           aria-label="Anterior"
-          className="grid h-11 w-11 place-items-center rounded-full border border-glass-stroke bg-white/[0.045] text-text-hi transition hover:border-cyan hover:shadow-[0_0_20px_-6px_var(--cyan)]"
+          className="grid h-11 w-11 place-items-center rounded-full border border-glass-stroke bg-white/[0.045] text-text-hi transition hover:border-accent hover:shadow-[0_0_20px_-6px_var(--accent)]"
         >
           <ChevronLeft className="h-[18px] w-[18px]" />
         </button>
@@ -341,14 +341,14 @@ export default function UgcCarousel() {
               aria-current={i === safe}
               aria-label={`Ir al creativo ${i + 1}`}
               onClick={() => goTo(i)}
-              className={`h-1.5 rounded-pill transition-all ${i === safe ? "w-[26px] bg-cyan" : "w-1.5 bg-white/20"}`}
+              className={`h-1.5 rounded-pill transition-all ${i === safe ? "w-[26px] bg-accent" : "w-1.5 bg-white/20"}`}
             />
           ))}
         </div>
         <button
           onClick={() => go(1)}
           aria-label="Siguiente"
-          className="grid h-11 w-11 place-items-center rounded-full border border-glass-stroke bg-white/[0.045] text-text-hi transition hover:border-cyan hover:shadow-[0_0_20px_-6px_var(--cyan)]"
+          className="grid h-11 w-11 place-items-center rounded-full border border-glass-stroke bg-white/[0.045] text-text-hi transition hover:border-accent hover:shadow-[0_0_20px_-6px_var(--accent)]"
         >
           <ChevronRight className="h-[18px] w-[18px]" />
         </button>

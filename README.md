@@ -1,73 +1,56 @@
-# Scrollstop — UGC Studio SaaS
+# Creativia — landing unificada
 
-Landing page + backend base para una plataforma de contenido UGC por suscripción.
-Estética dark cyberpunk / glassmorphism con carrusel 3D de creativos y calculadora de ROI en vivo.
+Landing de **Creativia** (estudio de video VSL / UGC / POV / IA para tiendas online),
+construida sobre Next.js. Fusiona dos proyectos previos:
+
+- **Creativia** (landing estática original) → portada a componentes React.
+- **Scrollstop** (app Next.js) → base técnica; aporta el carrusel 3D, la calculadora de ROI
+  y la tabla comparativa, además de la infraestructura de Stripe/Supabase (latente).
 
 ## Stack
 
 - **Next.js 14** (App Router) + **TypeScript**
-- **Tailwind CSS** (tokens de diseño en `src/app/globals.css`)
-- **Framer Motion** — carrusel 3D, reveals y micro-interacciones
-- **Stripe Subscriptions** — checkout + webhooks
-- **Supabase** — auth, Postgres, RLS
+- **Tailwind CSS** — sistema de diseño "Creativia × Scrollstop" (tokens en `src/app/globals.css`)
+- **Framer Motion** — carrusel 3D, tarjeta de ventas animada, reveals
+- Fuentes: **Bricolage Grotesque** (display) · **Plus Jakarta Sans** (cuerpo) · **IBM Plex Mono** (datos)
+- **Stripe** + **Supabase** — presentes como infraestructura, sin conectar a la UI (los CTAs van a WhatsApp)
 
 ## Puesta en marcha
 
 ```bash
 npm install
-cp .env.local.example .env.local   # y rellena las llaves
+cp .env.local.example .env.local   # solo si vas a activar Stripe/Supabase
 npm run dev
 ```
 
-Abre http://localhost:3000
+## Secciones (`src/app/page.tsx`)
 
-## Variables de entorno
+| Ancla | Componente | Origen |
+|---|---|---|
+| `#top` | `Hero` + `SalesCard` + `Marquee` + `HeroStats` | Creativia (+ Scrollstop) |
+| `#showcase` | `UgcCarousel` (abanico 3D / tira móvil) | Scrollstop |
+| `#formatos` | `Formats` — 6 pestañas con sub-carrusel | Creativia |
+| `#proceso` | `Process` — timeline 5 pasos | Creativia |
+| `#roi` | `RoiCalculator` — re-enfocada a paquetes | Scrollstop |
+| `#comparar` | `CompareTable` — hazlo tú vs. Creativia | Scrollstop |
+| `#compromisos` | `Promises` + espacio de testimonios | Creativia |
+| `#precios` | `Pricing` — toggle paquete único / suscripción | Ambos |
+| `#faq` | `Faq` | Ambos (fusión) |
+| `#contacto` | `Contact` — formulario FormSubmit + WhatsApp | Creativia |
 
-Ver `.env.local.example`. Necesitas un proyecto de Supabase y una cuenta de Stripe
-con tres precios recurrentes (Starter / Growth / Scale).
+## Contacto (editable en `src/lib/data.ts`)
 
-## Base de datos
+- WhatsApp: `WHATSAPP = "51998987079"`
+- Formulario: `CONTACT_EMAIL = "garciamarce0307@gmail.com"` (FormSubmit)
 
-```bash
-npx supabase login
-npx supabase link --project-ref TU_PROJECT_REF
-npx supabase db push
-```
+> La primera vez que alguien envía el formulario, FormSubmit manda un correo de
+> confirmación a esa dirección. Hasta hacer clic en ese enlace, los mensajes no llegan.
 
-Aplica `supabase/migrations/0001_init.sql`: tablas `users`, `subscriptions`, `briefs`,
-`video_deliverables`, triggers de `updated_at`, creación de perfil al registrarse y políticas RLS.
+## Pendientes (del proyecto Creativia original)
 
-## Webhook de Stripe
-
-Local:
-
-```bash
-stripe listen --forward-to localhost:3000/api/stripe/webhook
-```
-
-Producción: apunta un endpoint a `https://TU_DOMINIO/api/stripe/webhook` con los eventos
-`customer.subscription.created`, `customer.subscription.updated`,
-`customer.subscription.deleted`, `invoice.payment_succeeded`, `invoice.payment_failed`.
-
-## Estructura
-
-```
-src/
-  app/
-    page.tsx                landing (Hero + secciones)
-    layout.tsx              fuentes (Space Grotesk / Inter / IBM Plex Mono)
-    globals.css             tokens de color + utilidades glass/glow
-    api/stripe/
-      checkout/route.ts     crea la sesión de Checkout
-      webhook/route.ts      sincroniza suscripciones y créditos
-  components/
-    Hero.tsx  UgcCarousel.tsx  RoiCalculator.tsx
-    CompareTable.tsx  Testimonials.tsx  Faq.tsx  Pricing.tsx
-    Section.tsx            helpers de animación
-  lib/
-    data.ts                copy y datos de la landing
-    stripe.ts              cliente de Stripe + mapa precio→plan
-    supabase/client.ts     cliente browser
-    supabase/server.ts     cliente servidor + service role
-supabase/migrations/0001_init.sql
-```
+- [ ] Cargar los videos reales en Formatos y en el carrusel showcase
+- [ ] Confirmar el correo de FormSubmit con un envío de prueba
+- [ ] Logo propio y favicon
+- [ ] Enlaces reales de Instagram / TikTok
+- [ ] Píxel de Meta y aviso de privacidad antes de lanzar campañas
+- [ ] Imagen Open Graph

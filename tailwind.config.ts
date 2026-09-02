@@ -5,15 +5,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        void: "#06070C",
-        surface: "#0C1018",
-        cyan: "#2DD4E8",
+        void: "#08070E",
+        surface: "#14111D",
+        accent: "#E5308F",
+        "accent-soft": "#F472B6",
         violet: "#7C5CFF",
-        lime: "#B6F03C",
-        rose: "#FF6B8A",
-        "text-hi": "#EEF1FA",
-        "text-mid": "#98A1BC",
-        "text-low": "#59627A",
+        data: "#22D3EE",
+        rose: "#FB7185",
+        wa: "#25D366",
+        "text-hi": "#F4F2F7",
+        "text-mid": "#9A94A8",
+        "text-low": "#5B5568",
+        line: "#262231",
         "glass-stroke": "rgba(255,255,255,0.10)",
       },
       fontFamily: {
@@ -22,11 +25,11 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       borderRadius: {
-        card: "22px",
+        card: "20px",
         pill: "999px",
       },
       backgroundImage: {
-        grad: "linear-gradient(115deg,#2DD4E8,#7C5CFF)",
+        grad: "linear-gradient(120deg,#E5308F,#7C5CFF)",
       },
       keyframes: {
         pulse2: { "50%": { opacity: "0.35", transform: "scale(0.8)" } },
